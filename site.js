@@ -44,7 +44,9 @@
   /* ---------- sabit arka plan: kaydırdıkça saat ve mevsim değişir ---------- */
   var katmanlar = {}; document.querySelectorAll('.katman').forEach(function (k) { katmanlar[k.getAttribute('data-bg')] = k; });
   var SIRA = ['sabah', 'oglen', 'aksam', 'kis', 'gece', 'bahar'];
-  var videoVar = !hareketAz && !veriTasarrufu && !!document.createElement('video').canPlayType;
+  /* Arka plan görüntüsü yavaş ve sakin bir döngü; "hareketi azalt" açık olsa da oynar ama sağ alttaki düğmeyle durdurulabilir. */
+  var videoVar = !veriTasarrufu && !!document.createElement('video').canPlayType;
+  var durdu = false;
   var aktif = null;
   function posterKoy(ad) { var k = katmanlar[ad]; if (k && !k.style.backgroundImage) k.style.backgroundImage = 'url("bg-' + ad + '.jpg")'; }
   function videoKoy(ad) {
@@ -60,7 +62,7 @@
     Object.keys(katmanlar).forEach(function (n) {
       var k = katmanlar[n], v = k.querySelector('video'), on = n === ad;
       k.classList.toggle('on', on);
-      if (v) { if (on) { var p = v.play(); if (p && p.catch) p.catch(function () { /* otomatik oynatma kapalıysa poster kalır */ }); } else setTimeout(function () { if (!k.classList.contains('on')) v.pause(); }, 1500); }
+      if (v) { if (on && !durdu) { var p = v.play(); if (p && p.catch) p.catch(function () { /* otomatik oynatma kapalıysa poster kalır */ }); } else setTimeout(function () { if (!k.classList.contains('on')) v.pause(); }, 1500); }
     });
     var i = SIRA.indexOf(ad), sonraki = SIRA[i + 1];
     if (sonraki) setTimeout(function () { posterKoy(sonraki); }, 800);
@@ -97,7 +99,7 @@
   var onceki = 0;
   function dongu(ms) {
     var t = ms / 1000, dt = Math.min(0.05, t - (onceki || t)); onceki = t;
-    if (!gizli) {
+    if (!gizli && !durdu) {
       cx.clearRect(0, 0, W, H);
       if (!hareketAz && GUNDUZ[aktif] && t - sonSuru > 9 + Math.random() * 40 && kuslar.length === 0) suru(t);
       kuslar = kuslar.filter(function (k) { k.x += k.vx * dt; k.y += Math.sin(t * 1.3 + k.faz) * 0.05; kusCiz(k, t); return k.x > -30 && k.x < W + 30; });
@@ -111,6 +113,15 @@
   }
   document.addEventListener('visibilitychange', function () { gizli = document.hidden; });
   requestAnimationFrame(dongu);
+
+  /* ---------- hareketi durdur / sürdür ---------- */
+  var dBtn = document.getElementById('durdur');
+  if (dBtn) dBtn.addEventListener('click', function () {
+    durdu = !durdu; dBtn.classList.toggle('kapali', durdu);
+    dBtn.setAttribute('aria-pressed', durdu ? 'true' : 'false');
+    document.querySelectorAll('.katman video').forEach(function (v) { if (durdu) v.pause(); else if (v.parentNode.classList.contains('on')) { var p = v.play(); if (p && p.catch) p.catch(function () {}); } });
+    if (durdu) cx.clearRect(0, 0, W, H);
+  });
 
   /* ---------- küçük sürprizler ---------- */
   // 1) gece gökyüzüne dokununca kayan yıldız

@@ -138,3 +138,10 @@ figcaption { font-size: 13.5px; color: var(--ink2); text-align: center; }
   .destek-kucuk { margin-top: 8px; }
   .kaydir { margin-top: 10px; padding: 8px 18px 6px; }
 }
+
+/* arka plan hareketi için küçük durdur düğmesi */
+.durdur { position: fixed; right: 14px; bottom: calc(14px + env(safe-area-inset-bottom)); z-index: 4; width: 36px; height: 36px; border-radius: 10px; border: 1px solid rgba(255,255,255,.28); background: rgba(0,0,0,.45); cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 4px; padding: 0; opacity: .7; -webkit-tap-highlight-color: transparent; }
+.durdur:hover, .durdur:focus-visible { opacity: 1; }
+.durdur i { display: block; width: 4px; height: 13px; background: var(--ink2); }
+.durdur.kapali i:first-child { width: 0; height: 0; background: none; border-left: 11px solid var(--ink2); border-top: 7px solid transparent; border-bottom: 7px solid transparent; }
+.durdur.kapali i + i { display: none; }
