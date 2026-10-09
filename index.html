@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Başar! · Odaklan, adan büyüsün</title>
+<meta name="description" content="Başar!, ders çalışmayı ve odaklanmayı keyifli bir alışkanlığa dönüştüren sakin bir zamanlayıcı. Çalıştığın her dakika küçük bir adaya can verir.">
+<meta name="theme-color" content="#0d2a44">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://basarapp.com/">
+<meta property="og:title" content="Başar! · Odaklan, adan büyüsün">
+<meta property="og:description" content="Çalıştığın her dakika küçük bir adaya can verir.">
+<meta property="og:image" content="https://basarapp.com/paylas.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="favicon-64.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="preload" href="TuglaPixel.ttf" as="font" type="font/ttf" crossorigin>
+<link rel="stylesheet" href="site.css">
+</head>
+<body>
+
+<!-- sabit arka plan: adanın canlı görüntüleri; sayfa kaydıkça saat ve mevsim değişir -->
+<div class="sahne" aria-hidden="true">
+  <div class="katman" data-bg="sabah"></div>
+  <div class="katman" data-bg="oglen"></div>
+  <div class="katman" data-bg="aksam"></div>
+  <div class="katman" data-bg="kis"></div>
+  <div class="katman" data-bg="gece"></div>
+  <div class="katman" data-bg="bahar"></div>
+  <canvas id="kuslar"></canvas>
+  <div class="perde"></div>
+</div>
+
+<header class="ust">
+  <button class="logo" id="logo" type="button" aria-label="Başar!"><img src="icon-192.png" alt="" width="34" height="34"><b>Başar!</b></button>
+  <button class="dil" type="button" id="dil">English</button>
+</header>
+
+<main>
+  <!-- 1 · giriş (sabah) -->
+  <section class="bolum kahraman" data-bg="sabah">
+    <h1>Başar!</h1>
+    <p class="slogan" data-en="Focus, and watch your island grow.">Odaklan, adan büyüsün.</p>
+    <p class="giris" data-en="Every minute you study brings a little island to life. Başar! turns studying into a calm habit you'll want to come back to every day.">Çalıştığın her dakika küçük bir adaya can verir. Başar!, ders çalışmayı her gün dönmek isteyeceğin sakin bir alışkanlığa dönüştürür.</p>
+    <div class="indir">
+      <span class="magaza yakinda" data-link="appstore"><small data-en="Coming soon">Yakında</small><b>App Store</b></span>
+      <span class="magaza yakinda" data-link="googleplay"><small data-en="Coming soon">Yakında</small><b>Google Play</b></span>
+    </div>
+    <p class="destek-kucuk"><span data-en="Questions or ideas?">Soru ya da önerin mi var?</span> <a href="mailto:support@basarapp.com">support@basarapp.com</a></p>
+    <a class="kaydir" href="#odak"><span data-en="Scroll down and explore the island">Aşağı kaydır, adayı gez</span><i class="ok" aria-hidden="true"></i><i class="ok" aria-hidden="true"></i></a>
+  </section>
+
+  <!-- 2 · odak (öğle, leylek) -->
+  <section class="bolum" data-bg="oglen" id="odak">
+    <div class="kart iki">
+      <div class="yazi">
+        <span class="etiket" data-en="How it works">Nasıl çalışır?</span>
+        <h2 data-en="Start a session, focus">Seansı başlat, odaklan</h2>
+        <p data-en="Pick a duration or study freely. While a session runs, the screen stays simple: the timer and your growing plant. When it ends, the plant settles on your island and you earn Knowledge Points (BP).">Süreni seç ya da serbest çalış. Seans boyunca ekran sade kalır: sayaç ve büyüyen bitkin. Seans bitince bitkin adana dikilir, Bilgi Puanı (BP) kazanırsın.</p>
+        <ul class="madde">
+          <li data-en="Tag what you study with folders and topics">Neye çalıştığını klasör ve konuyla işaretle</li>
+          <li data-en="Rain, waves, forest, fireplace or café sounds">Yağmur, dalga, orman, şömine ya da kafe sesi</li>
+          <li data-en="Optional automatic breaks">İsteğe bağlı otomatik molalar</li>
+          <li data-en="Note how you feel with one tap at the end">Seans sonunda nasıl hissettiğini tek dokunuşla not et</li>
+        </ul>
+      </div>
+      <figure class="telefon"><img loading="lazy" src="ek-odak_tr.jpg" data-src-en="ek-odak_en.jpg" alt="Odak ekranı" data-alt-en="Focus screen" width="540" height="1169"></figure>
+    </div>
+  </section>
+
+  <!-- 3 · görevler (akşam, sonbahar) -->
+  <section class="bolum" data-bg="aksam">
+    <div class="kart iki ters">
+      <div class="yazi">
+        <span class="etiket" data-en="Quest Booklet">Görev Kitapçığı</span>
+        <h2 data-en="New quests every day">Her gün yeni görevler</h2>
+        <p data-en="Every day brings 4 new bonus quests, every week 7 bigger ones, and every month big goals. Complete them to earn BP, rare plants, cat coats and night-sky rewards.">Her gün 4 yeni bonus görev, her hafta 7 görev, her ay büyük hedefler seni bekler. Tamamladıkça BP, nadir bitkiler, kedi tüyleri ve gece gökyüzü ödülleri kazanırsın.</p>
+        <div class="oduller">
+          <figure><img loading="lazy" src="spr-coin.png" alt="" width="48" height="48"><figcaption data-en="Knowledge Points">Bilgi Puanı</figcaption></figure>
+          <figure><img loading="lazy" src="spr-bitki_altin_papatya.png" alt="" width="84" height="58"><figcaption data-en="Golden Daisy">Altın Papatya</figcaption></figure>
+          <figure><img loading="lazy" src="spr-bitki_gece_sefasi.png" alt="" width="84" height="63"><figcaption data-en="Moonflower">Gece Sefası</figcaption></figure>
+          <figure><img loading="lazy" src="spr-bitki_ejder.png" alt="" width="68" height="75"><figcaption data-en="Dragon Blood Tree">Ejder Kanı Ağacı</figcaption></figure>
+          <figure><img loading="lazy" src="spr-bitki_mantar_isik.png" alt="" width="84" height="58"><figcaption data-en="Glowing Mushroom">Işıldayan Mantar</figcaption></figure>
+          <figure><img loading="lazy" src="spr-kedi_uc_renk_0.png" alt="" width="78" height="42"><figcaption data-en="Calico cat coat">Üç renkli kedi tüyü</figcaption></figure>
+        </div>
+        <p class="not-kucuk" data-en="Rare plants and coats can't be bought; they're earned only through quests.">Nadir bitkiler ve tüyler satın alınamaz; yalnızca görevlerle kazanılır.</p>
+      </div>
+      <figure class="telefon"><img loading="lazy" src="ek-gorev_tr.jpg" data-src-en="ek-gorev_en.jpg" alt="Görev Kitapçığı" data-alt-en="Quest Booklet" width="540" height="1169"></figure>
+    </div>
+  </section>
+
+  <!-- 4 · seri ve başarımlar (kış) -->
+  <section class="bolum" data-bg="kis">
+    <div class="kart iki">
+      <div class="yazi">
+        <span class="etiket" data-en="Streaks and achievements">Seri ve başarımlar</span>
+        <h2 data-en="Every day counts">Her gün bir adım</h2>
+        <p data-en="Study a little every day and keep your streak alive. Your streak raises a monument on your island: bronze at 7 days, silver at 30, gold at 100. Achievements like focus hours and finished tasks grow step by step.">Her gün biraz çalış, serini koru. Serin adana bir anıt diker: 7 günde bronz, 30 günde gümüş, 100 günde altın. Odak saatleri ve tamamlanan görevler gibi başarımlar basamak basamak büyür.</p>
+        <div class="anitlar">
+          <figure><img loading="lazy" src="spr-anit_7.png" alt="" width="98" height="113"><figcaption data-en="7 days">7 gün</figcaption></figure>
+          <figure><img loading="lazy" src="spr-anit_30.png" alt="" width="98" height="121"><figcaption data-en="30 days">30 gün</figcaption></figure>
+          <figure><img loading="lazy" src="spr-anit_100.png" alt="" width="78" height="114"><figcaption data-en="100 days">100 gün</figcaption></figure>
+        </div>
+      </div>
+      <figure class="telefon"><img loading="lazy" src="ek-basarim_tr.jpg" data-src-en="ek-basarim_en.jpg" alt="Başarımlar" data-alt-en="Achievements" width="540" height="1169"></figure>
+    </div>
+  </section>
+
+  <!-- 5 · gece gökyüzü (gece) -->
+  <section class="bolum gok" data-bg="gece" id="gok">
+    <div class="kart iki ters">
+      <div class="yazi">
+        <span class="etiket" data-en="Night sky">Gece gökyüzü</span>
+        <h2 data-en="Your sky grows too">Gökyüzün de büyür</h2>
+        <p data-en="The North Star, shooting stars, Venus, Mars, Jupiter, Saturn, a comet, the Northern Lights, the Milky Way… Night-sky rewards are never sold. They're earned only through hard work and tough quests.">Kutup Yıldızı, kayan yıldızlar, Venüs, Mars, Jüpiter, Satürn, kuyruklu yıldız, kuzey ışıkları, Samanyolu… Gökyüzü ödülleri asla satılmaz; yalnızca emekle ve zorlu görevlerle kazanılır.</p>
+        <div class="gezegenler">
+          <img loading="lazy" src="spr-gezegen_venus.png" alt="" width="96" height="96">
+          <img loading="lazy" src="spr-gezegen_mars.png" alt="" width="96" height="96">
+          <img loading="lazy" src="spr-gezegen_jupiter.png" alt="" width="96" height="96">
+          <img loading="lazy" src="spr-gezegen_saturn.png" alt="" width="96" height="96">
+          <img loading="lazy" src="spr-kuyruklu.png" alt="" width="160" height="80" class="kuyruk">
+        </div>
+        <p class="ipucu" data-en="Psst… tap the sky and make a wish.">Psst… gökyüzüne dokun, bir dilek tut.</p>
+      </div>
+      <figure class="telefon"><img loading="lazy" src="ek-magaza_tr.jpg" data-src-en="ek-magaza_en.jpg" alt="Gökyüzü ödülleri" data-alt-en="Sky rewards" width="540" height="1169"></figure>
+    </div>
+  </section>
+
+  <!-- 6 · istatistik (bahar) -->
+  <section class="bolum" data-bg="bahar">
+    <div class="kart iki">
+      <div class="yazi">
+        <span class="etiket" data-en="Statistics and study tools">İstatistik ve ders araçları</span>
+        <h2 data-en="Get to know yourself">Kendini tanı</h2>
+        <p data-en="Daily, weekly, monthly and yearly charts. Your most productive hours, your best day, the questions you've solved and the days left until your exam. Every week, a summary image you can share.">Günlük, haftalık, aylık ve yıllık grafikler. En verimli saatlerin, en iyi günün, çözdüğün soru sayısı ve sınavına kalan gün. Her hafta paylaşabileceğin bir özet görseli.</p>
+        <figure class="rapor"><img loading="lazy" src="ek-rapor_tr.jpg" data-src-en="ek-rapor_en.jpg" alt="Haftanın özeti" data-alt-en="Weekly summary" width="720" height="900"></figure>
+      </div>
+      <figure class="telefon"><img loading="lazy" src="ek-istat_tr.jpg" data-src-en="ek-istat_en.jpg" alt="İstatistiklerim" data-alt-en="My stats" width="540" height="1169"></figure>
+    </div>
+  </section>
+
+  <!-- 7 · yaşayan ada (sabah) -->
+  <section class="bolum" data-bg="sabah">
+    <div class="kart">
+      <span class="etiket" data-en="A living island">Yaşayan bir ada</span>
+      <h2 data-en="Something is always happening">Adada hayat hiç durmaz</h2>
+      <p data-en="Day and night, the seasons, weather and holidays all show up on your island. Storks come and go, you can pet your cat, and now and then a travelling merchant drops by with souvenirs from faraway coasts. Little surprises hide in every corner.">Gece ile gündüz, mevsimler, hava ve bayramlar adana yansır. Leylekler gelip gider, kedini sevebilirsin, ara sıra uzak kıyılardan hediyelikler getiren gezgin bir tüccar uğrar. Adanın her köşesinde küçük sürprizler saklı.</p>
+      <div class="mevsimler">
+        <figure><img loading="lazy" src="mevsim-ilkbahar.jpg" alt="" width="480" height="270"><figcaption data-en="Spring">İlkbahar</figcaption></figure>
+        <figure><img loading="lazy" src="mevsim-yaz.jpg" alt="" width="480" height="270"><figcaption data-en="Summer">Yaz</figcaption></figure>
+        <figure><img loading="lazy" src="mevsim-sonbahar.jpg" alt="" width="480" height="270"><figcaption data-en="Autumn">Sonbahar</figcaption></figure>
+        <figure><img loading="lazy" src="mevsim-kis.jpg" alt="" width="480" height="270"><figcaption data-en="Winter">Kış</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8 · sakin ve senin (gece) -->
+  <section class="bolum" data-bg="gece">
+    <div class="kart">
+      <span class="etiket" data-en="Calm and yours">Sakin ve senin</span>
+      <h2 data-en="Calm, safe and yours.">Sakin, güvenli, senin.</h2>
+      <div class="izgara">
+        <div><h3 data-en="Works offline">İnternetsiz çalışır</h3><p data-en="Your data stays on your device first and is backed up when you're online.">Verilerin önce cihazında durur, internete bağlanınca yedeklenir.</p></div>
+        <div><h3 data-en="Your notes are yours">Notların sende kalır</h3><p data-en="Your tasks, ideas and wishes are never shared with anyone.">Görevlerin, fikirlerin ve dileklerin hiç kimseyle paylaşılmaz.</p></div>
+        <div><h3 data-en="Friends, if you like">İstersen arkadaşlar</h3><p data-en="Visit your friends' islands and send small gifts (ages 13 and up).">Arkadaşlarının adalarını gez, küçük hediyeler gönder (13 yaş ve üstü).</p></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="alt">
+  <div class="kart son">
+    <p class="motto" data-en="Small steps, big islands.">Küçük adımlar, büyük adalar.</p>
+    <div class="indir">
+      <span class="magaza yakinda" data-link="appstore"><small data-en="Coming soon">Yakında</small><b>App Store</b></span>
+      <span class="magaza yakinda" data-link="googleplay"><small data-en="Coming soon">Yakında</small><b>Google Play</b></span>
+    </div>
+    <div class="iletisim">
+      <span data-en="Contact and support">İletişim ve destek</span>
+      <a class="mail" href="mailto:support@basarapp.com">support@basarapp.com</a>
+    </div>
+    <div class="sosyal">
+      <a href="https://www.instagram.com/tnckrtmat/" target="_blank" rel="noopener" aria-label="Instagram"><img src="ikon-foto.svg" alt="" width="18" height="18">Instagram</a>
+      <a href="https://www.youtube.com/@tunckurtmatematik" target="_blank" rel="noopener" aria-label="YouTube"><img src="ikon-video.svg" alt="" width="18" height="18">YouTube · Tunç Kurt Matematik</a>
+    </div>
+    <p class="kunye"><span data-en="Made by Tunç Kurt">Geliştiren: Tunç Kurt</span> · © 2026 · <span data-en="This site uses no cookies or trackers.">Bu sitede çerez ya da takip aracı yok.</span></p>
+    <div class="kedi-yolu"><button type="button" class="kedi" id="kedi" aria-label="Kedi"></button></div>
+  </div>
+</footer>
+
+<script src="site.js"></script>
+</body>
+</html>
