@@ -48,12 +48,20 @@
   var videoVar = !veriTasarrufu && !!document.createElement('video').canPlayType;
   var durdu = false;
   var aktif = null;
+  function aktifVideo() { var k = katmanlar[aktif]; return k ? k.querySelector('video') : null; }
+  function oynat(v) { var p = v.play(); if (p && p.catch) p.catch(function () { ikonGuncelle(); }); }
+  function ikonGuncelle() {
+    var b = document.getElementById('durdur'); if (!b) return;
+    var v = aktifVideo(), kapali = durdu || !!(v && v.paused);
+    b.classList.toggle('kapali', kapali); b.setAttribute('aria-pressed', kapali ? 'true' : 'false');
+  }
   function posterKoy(ad) { var k = katmanlar[ad]; if (k && !k.style.backgroundImage) k.style.backgroundImage = 'url("bg-' + ad + '.jpg")'; }
   function videoKoy(ad) {
     var k = katmanlar[ad]; if (!videoVar || !k || k.querySelector('video')) return;
     var v = document.createElement('video'); v.muted = true; v.loop = true; v.playsInline = true; v.setAttribute('muted', ''); v.setAttribute('playsinline', ''); v.preload = 'auto';
     v.innerHTML = '<source src="bg-' + ad + '.webm" type="video/webm"><source src="bg-' + ad + '.mp4" type="video/mp4">';
-    v.addEventListener('error', function () { v.remove(); }, true);
+    v.addEventListener('error', function () { v.remove(); ikonGuncelle(); }, true);
+    v.addEventListener('playing', ikonGuncelle); v.addEventListener('pause', ikonGuncelle);
     k.appendChild(v);
   }
   function arkaPlan(ad) {
@@ -62,8 +70,9 @@
     Object.keys(katmanlar).forEach(function (n) {
       var k = katmanlar[n], v = k.querySelector('video'), on = n === ad;
       k.classList.toggle('on', on);
-      if (v) { if (on && !durdu) { var p = v.play(); if (p && p.catch) p.catch(function () { /* otomatik oynatma kapalıysa poster kalır */ }); } else setTimeout(function () { if (!k.classList.contains('on')) v.pause(); }, 1500); }
+      if (v) { if (on && !durdu) oynat(v); /* otomatik oynatma kapalıysa poster kalır, düğme ▶ gösterir */ else setTimeout(function () { if (!k.classList.contains('on')) v.pause(); }, 1500); }
     });
+    ikonGuncelle();
     var i = SIRA.indexOf(ad), sonraki = SIRA[i + 1];
     if (sonraki) setTimeout(function () { posterKoy(sonraki); }, 800);
   }
@@ -115,12 +124,16 @@
   requestAnimationFrame(dongu);
 
   /* ---------- hareketi durdur / sürdür ---------- */
+  /* Telefonda (ör. iPhone'da Düşük Güç Modu) tarayıcı arka planın kendiliğinden oynamasını engelleyebilir.
+     O zaman düğme ▶ gösterir; dokununca arka plan başlar (dokunuşla başlatmaya her tarayıcı izin verir). */
   var dBtn = document.getElementById('durdur');
   if (dBtn) dBtn.addEventListener('click', function () {
-    durdu = !durdu; dBtn.classList.toggle('kapali', durdu);
-    dBtn.setAttribute('aria-pressed', durdu ? 'true' : 'false');
-    document.querySelectorAll('.katman video').forEach(function (v) { if (durdu) v.pause(); else if (v.parentNode.classList.contains('on')) { var p = v.play(); if (p && p.catch) p.catch(function () {}); } });
+    var v = aktifVideo();
+    if (!durdu && v && v.paused) { oynat(v); return; }
+    durdu = !durdu;
+    document.querySelectorAll('.katman video').forEach(function (x) { if (durdu) x.pause(); else if (x.parentNode.classList.contains('on')) oynat(x); });
     if (durdu) cx.clearRect(0, 0, W, H);
+    ikonGuncelle();
   });
 
   /* ---------- küçük sürprizler ---------- */
