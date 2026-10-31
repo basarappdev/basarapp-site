@@ -145,3 +145,37 @@ figcaption { font-size: 13.5px; color: var(--ink2); text-align: center; }
 .durdur i { display: block; width: 4px; height: 13px; background: var(--ink2); }
 .durdur.kapali i:first-child { width: 0; height: 0; background: none; border-left: 11px solid var(--ink2); border-top: 7px solid transparent; border-bottom: 7px solid transparent; }
 .durdur.kapali i + i { display: none; }
+
+/* 31 Ekim: çalışma ekranları, evler, paylaşım kartları */
+.ekranlar { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; margin-top: 18px; }
+.ekranlar figure, .kartlar figure { margin: 0; }
+.ekranlar img { display: block; width: 100%; height: auto; border-radius: 16px; border: 5px solid #05090d; box-shadow: 0 12px 30px rgba(0,0,0,.35); }
+.ekranlar figcaption { margin-top: 8px; text-align: center; font: 13px var(--pix); color: var(--ink2); }
+.evler { margin: 18px 0 8px; overflow-x: auto; }
+.evler img { display: block; width: 100%; min-width: 640px; height: auto; image-rendering: pixelated; }
+.kartlar { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; margin-top: 18px; }
+.kartlar img { display: block; width: 100%; height: auto; border-radius: 12px; border: 1px solid var(--cizgi); box-shadow: 0 12px 30px rgba(0,0,0,.35); }
+@media (max-width: 820px) {
+  .ekranlar, .kartlar { grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: 42%; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 6px; }
+  .ekranlar figure, .kartlar figure { scroll-snap-align: start; }
+}
+
+/* 31 Ekim (2): kendiliğinden kayan telefon ekranları ve "Adanda neler var?" */
+.telefon.kayan { position: relative; }
+.telefon.kayan img { transition: opacity .7s ease; }
+.telefon.kayan img + img { position: absolute; top: 9px; left: 9px; width: calc(100% - 18px); opacity: 0; }
+.telefon.kayan img.on { opacity: 1; }
+.telefon.kayan.js img:first-child:not(.on) { opacity: 0; }
+.noktalar { position: absolute; left: 0; right: 0; bottom: -22px; display: flex; justify-content: center; gap: 7px; }
+.noktalar button { width: 8px; height: 8px; padding: 0; border: 0; border-radius: 50%; background: rgba(255,255,255,.3); cursor: pointer; }
+.noktalar button.on { background: var(--mint, #57d9ad); }
+.telefon.kayan { margin-bottom: 26px; }
+.adakare { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 18px; }
+.adakare figure { margin: 0; background: rgba(255,255,255,.04); border: 1px solid var(--cizgi); border-radius: 14px; overflow: hidden; }
+.adakare img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; image-rendering: pixelated; }
+.adakare figcaption { padding: 10px 12px 12px; display: flex; flex-direction: column; gap: 4px; }
+.adakare figcaption b { font: 14px var(--pix); color: var(--ink, #eef3f7); font-weight: normal; }
+.adakare figcaption span { font-size: 13.5px; color: var(--ink2); line-height: 1.45; }
+@media (max-width: 820px) { .adakare { grid-template-columns: repeat(2, 1fr); gap: 10px; } }
+@media (max-width: 480px) { .adakare { grid-template-columns: 1fr; } }
+@media (prefers-reduced-motion: reduce) { .telefon.kayan img { transition: none; } }

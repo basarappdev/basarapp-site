@@ -177,3 +177,18 @@
     });
   }
 })();
+
+/* 31 Ekim: telefon ekranları kendiliğinden kayar (görünürken; dokununca ya da noktaya basınca elle) */
+(function () {
+  var az = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.querySelectorAll('.telefon.kayan').forEach(function (f, fi) {
+    var imgs = [].slice.call(f.querySelectorAll('img')); if (imgs.length < 2) return;
+    f.classList.add('js'); var i = 0, gorunur = false, t = null; var nk = f.querySelector('.noktalar');
+    var btn = imgs.map(function (im, k) { var b = document.createElement('button'); b.type = 'button'; b.setAttribute('aria-label', String(k + 1)); b.addEventListener('click', function () { git(k); bas(); }); nk.appendChild(b); return b; });
+    function git(k) { i = (k + imgs.length) % imgs.length; imgs.forEach(function (im, n) { im.classList.toggle('on', n === i); if (n === i && im.loading === 'lazy') im.loading = 'eager'; }); btn.forEach(function (b, n) { b.classList.toggle('on', n === i); }); var s = imgs[(i + 1) % imgs.length]; if (s.loading === 'lazy') s.loading = 'eager'; }
+    function bas() { clearInterval(t); if (az || !gorunur) return; t = setInterval(function () { if (!document.hidden) git(i + 1); }, 3200 + (fi % 3) * 400); }
+    f.addEventListener('click', function (e) { if (e.target.tagName !== 'BUTTON') { git(i + 1); bas(); } });
+    git(0);
+    if ('IntersectionObserver' in window) new IntersectionObserver(function (es) { gorunur = es[0].isIntersecting; bas(); }, { threshold: 0.15 }).observe(f); else { gorunur = true; bas(); }
+  });
+})();
