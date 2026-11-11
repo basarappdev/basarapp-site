@@ -2,7 +2,7 @@
 (function () {
   'use strict';
   /* Mağaza bağlantıları: uygulama yayınlanınca yalnız buraya adres yazılır, düğmeler kendiliğinden etkinleşir. */
-  var LINKLER = { appstore: '', googleplay: '' };
+  var LINKLER = { appstore: 'https://apps.apple.com/app/id6821430105', googleplay: '' };
 
   var hareketAz = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var veriTasarrufu = !!(navigator.connection && navigator.connection.saveData);
